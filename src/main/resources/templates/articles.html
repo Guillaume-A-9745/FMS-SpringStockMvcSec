@@ -12,7 +12,7 @@
 			<div class="card-body text-end">	
 				<form th:action="@{/index}" method="get">
 					<label>Keyword</label>
-					<input type="text" name="keyword">
+					<input type="text" name="keyword" th:value="${keyword}">
 					<button type="submit" class="btn btn-primary"> Search </button>
 				</form>
 			</div>	
@@ -39,7 +39,7 @@
 			<div class="card-footer">
 				<ul class="pagination">
 					<li class="page-item" th:class="${currentPage==status.index}?'active':''" th:each="page,status:${pages}">
-						<a class="page-link" th:href="@{/index(page=${status.index})}" th:text="${status.index}"></a>
+						<a class="page-link" th:href="@{/index(page=${status.index},keyword=${keyword})}" th:text="${status.index}"></a>
 					</li>
 				</ul>
 			</div>

@@ -28,6 +28,8 @@ public class ArticleController {
 		
 		model.addAttribute("currentPage",page);
 		
+		model.addAttribute("keyword",kw);
+		
 		return "articles";										
 	}
 }

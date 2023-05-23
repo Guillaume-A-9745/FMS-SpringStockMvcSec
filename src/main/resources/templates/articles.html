@@ -7,9 +7,16 @@
 </head>
 <body>
 	<div class="container">
-		<div class="card">
-			<div class="card-body">
-				<h5 class="card-title text-center text-uppercase">List of articles</h5>
+		<div class="card py-3">
+			<h5 class="card-title text-center text-uppercase">List of articles</h5>
+			<div class="card-body text-end">	
+				<form th:action="@{/index}" method="get">
+					<label>Keyword</label>
+					<input type="text" name="keyword">
+					<button type="submit" class="btn btn-primary"> Search </button>
+				</form>
+			</div>	
+			<div class="card-body">		
 				<table class="table table-striped">
 					<thead>
 						<tr>

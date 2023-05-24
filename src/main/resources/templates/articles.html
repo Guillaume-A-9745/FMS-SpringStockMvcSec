@@ -1,48 +1,51 @@
 <!DOCTYPE html>
-<html xmlns:th="http://thymeleaf.org">
+<html xmlns:th="http://thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="layout">
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="utf-8">
 <title>Articles in shop</title>
-<link rel="stylesheet" href="../static/css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}">
 </head>
 <body>
-	<div class="container">
-		<div class="card py-3">
-			<h5 class="card-title text-center text-uppercase">List of articles</h5>
-			<div class="card-body text-end">	
-				<form th:action="@{/index}" method="get">
-					<label>Keyword</label>
-					<input type="text" name="keyword" th:value="${keyword}">
-					<button type="submit" class="btn btn-primary"> Search </button>
-				</form>
-			</div>	
-			<div class="card-body">		
-				<table class="table table-striped">
-					<thead>
-						<tr>
-							<th scope="col">ID</th>
-							<th scope="col">BRAND</th>
-							<th scope="col">DESCRIPTION</th>
-							<th scope="col">PRICE</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr th:each="a:${listArticle}">
-							<td th:text="${a.id}"></td>
-							<td th:text="${a.brand}"></td>
-							<td th:text="${a.description}"></td>
-							<td th:text="${a.price}"></td>
-							<td> <a class="btn btn-danger" th:href="@{/delete(id=${a.id}, page=${currentPage, keyword=${keyword})}}">Delete</a> </td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="card-footer">
-				<ul class="pagination">
-					<li class="page-item" th:class="${currentPage==status.index}?'active':''" th:each="page,status:${pages}">
-						<a class="page-link" th:href="@{/index(page=${status.index},keyword=${keyword})}" th:text="${status.index}"></a>
-					</li>
-				</ul>
+	<div layout:fragment="content">
+		<div class="container">
+			<div class="card py-3">
+				<h5 class="card-title text-center text-uppercase">List of articles</h5>
+				<div class="card-body text-end">	
+					<form th:action="@{/index}" method="get">
+						<label>Keyword</label>
+						<input type="text" name="keyword" th:value="${keyword}">
+						<button type="submit" class="btn btn-primary"> Search </button>
+					</form>
+				</div>	
+				<div class="card-body">		
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th scope="col">ID</th>
+								<th scope="col">BRAND</th>
+								<th scope="col">DESCRIPTION</th>
+								<th scope="col">PRICE</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="a:${listArticle}">
+								<td th:text="${a.id}"></td>
+								<td th:text="${a.brand}"></td>
+								<td th:text="${a.description}"></td>
+								<td th:text="${a.price}"></td>
+								<td> <a class="btn btn-danger" th:href="@{/delete(id=${a.id}, page=${currentPage, keyword=${keyword})}}">Delete</a> </td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="card-footer">
+					<ul class="pagination">
+						<li class="page-item" th:class="${currentPage==status.index}?'active':''" th:each="page,status:${pages}">
+							<a class="page-link" th:href="@{/index(page=${status.index},keyword=${keyword})}" th:text="${status.index}"></a>
+						</li>
+					</ul>
+				</div>
 			</div>
 		</div>
 	</div>
